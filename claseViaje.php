@@ -84,9 +84,6 @@ class Viaje{
         return "codigo:". $this->getCodigo(). "\n". "destino: ". $this->getDestino(). "\n". "cantidad maxima de pasajeros: " . $this->getCantMaxPasajeros(). "\n". print_r($this->getPasajerosViaje());
     }
 }
-$pasajeroN[0]=array('nombre' => null, 'apellido'=> null , 'documento'=>null);
-$viaje1=new Viaje(null,null,null,$pasajeroN);
-
 function reiniciarObj($obj){
     /**
      * inicia el objeto desde 0
@@ -97,13 +94,13 @@ function reiniciarObj($obj){
     $obj->setDestino(null);
     $obj->setCantMaxPasajeros(null);
     $obj->setPasajerosViaje($pasajeroN);
-
 }
-
-
 function linea(){
     echo "=======================================\n";
 }
+//inicio el objeto
+$pasajeroN[0]=array('nombre' => null, 'apellido'=> null , 'documento'=>null);
+$viaje1=new Viaje(null,null,null,$pasajeroN);
 do {
     echo "\n";
     linea();
