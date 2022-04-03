@@ -1,3 +1,3 @@
 <?php
-include_once("teatro.php");
+include_once("claseViaje.php");
 
