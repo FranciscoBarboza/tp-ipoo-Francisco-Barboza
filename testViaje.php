@@ -73,7 +73,7 @@ do {
         case 2:
             //menu para 2) modificar datos
             do {
-                echo "\nque quiere modificar?";
+                echo "\nque quiere modificar?\n";
                 linea();
                 echo "\n1). codigo del viaje.";
                 echo "\n2). destido del viaje.";
@@ -214,7 +214,6 @@ do {
                     echo "\nDatos cambiados.";
                 }
             }    
-                $viaje1->setCantMaxPasajeros($respuestaN);
             break;
         case 3:
             echo "1). mostrar un pasajero en especifico.\n";
@@ -245,4 +244,3 @@ do {
 
     }
 } while ($respMainMenu<>4);
-2
