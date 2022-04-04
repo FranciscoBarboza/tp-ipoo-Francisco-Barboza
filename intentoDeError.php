@@ -7,9 +7,6 @@ $viaje1=new Viaje(null,null,null,$pasajeroN);
 do {
     echo "\n";
     linea();
-    echo "transportes VIAJE FELIZ.\n";
-    linea();
-    echo "que quiere hacer?: \n";
     echo "1). cargar informacion de un viaje.\n";
     echo "2). modificar datos.\n";
     echo "3). ver datos.\n";
