@@ -1,5 +1,5 @@
 <?php
-include_once("claseViaje.php");
+include_once("Viaje.php");
 
 //inicio el objeto
 $pasajeroN[0]=array('nombre' => null, 'apellido'=> null , 'documento'=>null);
