@@ -218,6 +218,7 @@ do {
         case 3:
             echo "1). mostrar un pasajero en especifico.\n";
             echo "2). mostrar toda la lista de los pasajeros.\n";
+            echo "3). mostrar datos del viaje.\n";
             
             $respuesta=trim(fgets(STDIN));
             if ($respuesta==1){
@@ -235,10 +236,26 @@ do {
             } elseif ($respuesta==2) {
                 //2) mostrar lista de pasajeros
                 $viaje1->mostrarlistaPasajeros();
+            } elseif ($respuesta==3) {
+                //3)mostrar datos del viaje
+                linea();
+                echo "DATOS DEL VIAJE\n";
+                linea();
+                echo "codigo: ". $viaje1->getCodigo(). "\n";
+                echo "Destino: ". $viaje1->getDestino(). "\n";
+                echo "Cantadidad maxima de pasajeros: ". $viaje1->getCantMaxPasajeros() . "\n";
+                /* esto lo hago porque el count me toma el [0] vacio como un pasajero aunque este vacio */
+                if (($viaje1->getPasajerosViaje()[0]['nombre']) == null) {
+                    echo "Pasajero actuales: ". 0;
+                }
+                else {
+                    echo "Pasajeros actuales: ". count($viaje1->getPasajerosViaje());
+                }
+                
             }
             break;
         case 4:
-            echo "fin programa";
+            echo "\nFIN PROGRAMA.";
             break;
 
 
