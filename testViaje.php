@@ -150,7 +150,7 @@ do {
                 if ($respuesta == 1) {
                     //1) ingresar pasajero
                     $pasajerosAct= count($viaje1->getPasajerosViaje());
-                    if (!($pasajerosAct <= ($viaje1->getCantMaxPasajeros()))) {
+                    if (!($pasajerosAct < ($viaje1->getCantMaxPasajeros()))) {
                         echo "\nerror: cantidad maxima de pasajeros exedida.";
                     } 
                     else {
@@ -178,7 +178,7 @@ do {
                         echo "\ncantidad actual maxima de pasajeros: ". ($viaje1->getCantMaxPasajeros());
                         echo "\ningrese numero de pasajero: ";
                         $pasajeroN= trim(fgets(STDIN));
-                        //validaacion para poner un numero correcto
+                        //validacion para poner un numero correcto
                         if (($pasajeroN > (count($viaje1->getPasajerosViaje()))) && ($pasajeroN > $viaje1->getPasajerosViaje()) && !(is_int($pasajeroN))) {
                             echo "\nerror: el numero de pasajero no existe o fue ingresado incorrectamente.";
                         }
