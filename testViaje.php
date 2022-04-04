@@ -218,13 +218,13 @@ do {
                     } while (($pasajeroN > (count($viaje1->getPasajerosViaje()))) && ($pasajeroN > $viaje1->getPasajerosViaje()) && !(is_int($pasajeroN)));
                     //datos nuevos del pasajero
                     linea();
-                    echo "\nPASAJERO N°: ". $pasajeroN;
+                    echo "PASAJERO N°: ". $pasajeroN. "\n";
                     linea();
                     echo "\nnombre: ". $viaje1->darNombrePasajero($pasajeroN);
                     echo "\napellido: ". $viaje1->darApellidoPasajero($pasajeroN);
-                    echo "\ndocumento: ". $viaje1->darNroDeDocPasajero($pasajeroN);
+                    echo "\ndocumento: ". $viaje1->darNroDeDocPasajero($pasajeroN). "\n";
                     linea();
-                    echo "\nDATOS NUEVOS A MODIFICAR";
+                    echo "\nDATOS NUEVOS A MODIFICAR\n";
                     linea();
                     echo "\nnombre nuevo: ";
                     $nombreN=strtoupper(trim(fgets(STDIN)));
