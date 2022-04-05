@@ -110,7 +110,6 @@ do {
                         echo "\ningrese numero de pasajero: ";
                         $pasajeroN= trim(fgets(STDIN));
                         //validacion para poner un numero correcto
-                        var_dump($pasajeroN);
                         if (($pasajeroN > (count($viaje1->getPasajerosViaje()))) || ($pasajeroN > $viaje1->getCantMaxPasajeros()) || !($pasajeroN == is_numeric($pasajeroN))) {
                             echo "\nerror: el numero de pasajero no existe o fue ingresado incorrectamente.";
                         }

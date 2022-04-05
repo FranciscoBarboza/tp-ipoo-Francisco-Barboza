@@ -84,7 +84,7 @@ class Viaje{
          * pushea el nuevo pasajero al array
          */
         $aux=$this->getCantMaxPasajeros();
-        array_push($aux,['nombre'=>$nombreN, 'apellido'=>$apellido, 'documento'=>$documentoN]);
+        array_push($aux,['nombre'=>$nombreN, 'apellido'=>$apellidoN, 'documento'=>$documentoN]);
         $this->setPasajerosViaje($aux);
     }
     public function reiniciarObj(){
