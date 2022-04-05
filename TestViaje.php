@@ -153,26 +153,7 @@ do {
                 
                 if ($respuesta == 1) {
                     //1) ingresar pasajero
-                    $pasajerosAct= count($viaje1->getPasajerosViaje());
-                    if (!($pasajerosAct < ($viaje1->getCantMaxPasajeros()))) {
-                        echo "\nerror: cantidad maxima de pasajeros exedida.";
-                    } 
-                    else {
-                        echo "\ncantidad actual de pasajeros: ". (count($viaje1->getPasajerosViaje()));
-                        echo "\ncantidad de pasajeros maximo: ". ($viaje1->getCantMaxPasajeros()). "\n";
-                        linea();
-                        echo "\ningrese el nombre del nuevo pasajero: ";
-                        $nombreN=strtoupper(trim(fgets(STDIN)));
-                        echo "\ningrese apellido del nuevo pasajero: ";
-                        $apellidoN= strtoupper(trim(fgets(STDIN)));
-                        echo "\ningrese documento del nuevo pasajero: ";
-                        $documentoN= strtoupper(trim(fgets(STDIN)));
-                        //pusheo al array
-                        $aux=$viaje1->getPasajerosViaje();
-                        array_push($aux, ['nombre'=>$nombreN, 'apellido'=>$apellidoN, 'documento'=>$documentoN]);  
-                        $viaje1->setPasajerosViaje($aux);
-
-                    }
+                    $viaje1->agregarPasajero();
                 }
                 elseif($respuesta==2){
                     do {
