@@ -113,7 +113,7 @@ do {
                         if (($pasajeroN > (count($viaje1->getPasajerosViaje()))) || ($pasajeroN > $viaje1->getCantMaxPasajeros()) || !(is_int($pasajeroN))) {
                             echo "\nerror: el numero de pasajero no existe o fue ingresado incorrectamente.";
                         }
-                    } while (($pasajeroN > (count($viaje1->getPasajerosViaje()))) || ($pasajeroN > $viaje1->getCantMaxPasajeros()) || !(is_int($pasajeroN)));
+                    } while (($pasajeroN > (count($viaje1->getPasajerosViaje()))) || ($pasajeroN > ($viaje1->getCantMaxPasajeros())) || !(is_int($pasajeroN)));
                     
                     //eliminacion de pasajero
                     echo "\npasajero n°: ". $pasajeroN;
