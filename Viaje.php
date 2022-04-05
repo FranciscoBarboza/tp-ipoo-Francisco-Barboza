@@ -60,7 +60,7 @@ class Viaje{
     public function cambiarDocumentoPasajero($documentoN, $nroPasajero){
         $this->pasajerosViaje[$nroPasajero-1]['documento']=$documentoN;
     }
-    //funciones extras
+    //METODOS QUE AGREGUE YO
     public function darDatosPasajero($nroPasajero){
         linea();
         echo "PASAJERO N°: ". $nroPasajero . "\n";
@@ -78,6 +78,7 @@ class Viaje{
             $i=$i+1;
         } while ($i <= $nroDePasajerosN);
     }
+    public function 
     public function __toString()
     {
 
