@@ -189,6 +189,13 @@ class Viaje{
                 } while ((($cantMaxPasajerosN)>=$i)&& ($siNo=="SI"));
             }
     }
+    public function eliminarPasajero($pasajeroN){
+        $nuevoArray=$this->getPasajerosViaje();
+        array_splice($nuevoArray, ($pasajeroN-1), 1);
+        $this->setPasajerosViaje($nuevoArray);
+
+        echo "\nnueva cantidad de pasajeros: ". count($this->getPasajerosViaje());
+    }
     public function __toString()
     {
         return "codigo:". $this->getCodigo(). "\n". "destino: ". $this->getDestino(). "\n". "cantidad maxima de pasajeros: " . $this->getCantMaxPasajeros(). "\n". print_r($this->getPasajerosViaje());

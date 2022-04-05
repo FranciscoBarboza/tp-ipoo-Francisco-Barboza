@@ -105,14 +105,12 @@ do {
                     linea();
                     echo "desea eliminar este pasajero?(si/no): ";
                     $respuesta=strtoupper(trim(fgets(STDIN)));
-                    if ($respuesta== "SI") {
-
-                        $nuevoArray=$viaje1->getPasajerosViaje();
-                        array_splice($nuevoArray, ($pasajeroN-1), 1);
-                        $viaje1->setPasajerosViaje($nuevoArray);
-
-                        echo "\nnueva cantidad de pasajeros: ". count($viaje1->getPasajerosViaje());
+                   
+                    if ($respuesta== "SI") {  
+                        // elimina el pasajero  
+                        $viaje1->eliminarPasajero($pasajeroN);
                     }
+                   
                     elseif ($respuesta=="NO") {
                         //no pasa nada vuelve a empezar
                     }  
