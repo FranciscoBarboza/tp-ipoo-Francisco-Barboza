@@ -78,29 +78,14 @@ class Viaje{
             $i=$i+1;
         } while ($i <= $nroDePasajerosN);
     }
-    public function agregarPasajero(){
+    public function agregarPasajero($nombreN, $apellidoN, $documentoN){
         /**
-         * ingresa pasajeros hasta alcanzar el maximo
+         * agrega pasajeros a una lista con pasajeros
+         * pushea el nuevo pasajero al array
          */
-        $pasajerosAct= count($this->getPasajerosViaje());
-        if (!($pasajerosAct < ($this->getCantMaxPasajeros()))) {
-        echo "\nerror: cantidad maxima de pasajeros exedida.";
-        } 
-        else {
-        echo "\ncantidad actual de pasajeros: ". (count($this->getPasajerosViaje()));
-        echo "\ncantidad de pasajeros maximo: ". ($this->getCantMaxPasajeros()). "\n";
-        linea();
-        echo "\ningrese el nombre del nuevo pasajero: ";
-        $nombreN=strtoupper(trim(fgets(STDIN)));
-        echo "\ningrese apellido del nuevo pasajero: ";
-        $apellidoN= strtoupper(trim(fgets(STDIN)));
-        echo "\ningrese documento del nuevo pasajero: ";
-        $documentoN= strtoupper(trim(fgets(STDIN)));
-        //pusheo al array
-        $aux=$this->getPasajerosViaje();
-        array_push($aux, ['nombre'=>$nombreN, 'apellido'=>$apellidoN, 'documento'=>$documentoN]);  
+        $aux=$this->getCantMaxPasajeros();
+        array_push($aux,['nombre'=>$nombreN, 'apellido'=>$apellido, 'documento'=>$documentoN]);
         $this->setPasajerosViaje($aux);
-        }
     }
     public function reiniciarObj(){
         /**

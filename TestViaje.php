@@ -80,8 +80,26 @@ do {
                 } while (($respuesta > 3) && ($respuesta < 1) && !(is_int($respuesta)));
                 
                 if ($respuesta == 1) {
-                    //1) ingresar pasajero
-                    $viaje1->agregarPasajero();
+                    /**
+                     * 1)ingresa pasajeros hasta alcanzar el maximo
+                     */
+                    $pasajerosAct= count($viaje1->getPasajerosViaje());
+                    if (!($pasajerosAct < ($viaje1->getCantMaxPasajeros()))) {
+                    echo "\nerror: cantidad maxima de pasajeros exedida.";
+                    } 
+                    else {
+                    echo "\ncantidad actual de pasajeros: ". (count($viaje1->getPasajerosViaje()));
+                    echo "\ncantidad de pasajeros maximo: ". ($viaje1->getCantMaxPasajeros()). "\n";
+                    linea();
+                    echo "\ningrese el nombre del nuevo pasajero: ";
+                    $nombreN=strtoupper(trim(fgets(STDIN)));
+                    echo "\ningrese apellido del nuevo pasajero: ";
+                    $apellidoN= strtoupper(trim(fgets(STDIN)));
+                    echo "\ningrese documento del nuevo pasajero: ";
+                    $documentoN= strtoupper(trim(fgets(STDIN)));
+                    //pusheo al array
+                    $viaje1->agregarPasajero($nombreN, $apellidoN, $documentoN);
+                    }
                 }
                 elseif($respuesta==2){
                     do {
@@ -105,12 +123,9 @@ do {
                     linea();
                     echo "desea eliminar este pasajero?(si/no): ";
                     $respuesta=strtoupper(trim(fgets(STDIN)));
-                   
-                    if ($respuesta== "SI") {  
-                        // elimina el pasajero  
+                    if ($respuesta== "SI") {
                         $viaje1->eliminarPasajero($pasajeroN);
                     }
-                   
                     elseif ($respuesta=="NO") {
                         //no pasa nada vuelve a empezar
                     }  
