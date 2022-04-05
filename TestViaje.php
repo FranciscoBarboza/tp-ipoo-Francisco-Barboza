@@ -133,7 +133,7 @@ do {
                         echo "error: ingrese un numero no menor al actual.\n";
                     }
                 } while ( !(is_int($respuestaN)) && $respuestaN <= (count($viaje1->getPasajerosViaje())));
-                $viaje1->setCantMaxPasajeros($respuesta);
+                $viaje1->setCantMaxPasajeros($respuestaN);
             }
             elseif ($respuesta==4) {
                 //4)modificar pasajeros
