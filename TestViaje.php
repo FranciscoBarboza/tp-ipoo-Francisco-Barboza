@@ -32,13 +32,14 @@ do {
             do {
                 echo "\ningrese destino del viaje: ";
                 $destinoN=strtoupper(trim(fgets(STDIN))); 
-                if (is_int($destinoN)) {
+                // me encontre esta validacion para que no pase un numero como destino
+                if ($destinoN == is_numeric($destinoN)) {
                    echo "\nERROR: destino no puede ser un numero.";
                 }
                 if ($destinoN==null) {
                     echo "ERROR: debe ingresar un destino\n";
                 }
-            } while (($destinoN==null) && (is_int($destinoN)));
+            } while (($destinoN==null) || ($destinoN == is_numeric($destinoN)));
             do {
                 echo "\ningrese cantidad maxima de pasajeros permitidos en el viaje: ";
                 $cantMaxPasajerosN=trim(fgets(STDIN));
