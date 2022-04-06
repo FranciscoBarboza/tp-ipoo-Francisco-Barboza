@@ -26,7 +26,7 @@ class Viaje{
     public function getPasajerosViaje(){
         return $this->pasajerosViaje;
     }
-    //gets para el array asociativo nombre y apellido
+    //"gets" para el array asociativo nombre y apellido
     public function darNombrePasajero($nroPasajero){
         return ($this->getPasajerosViaje())[$nroPasajero-1]['nombre'];
     }
@@ -50,7 +50,7 @@ class Viaje{
     public function setPasajerosViaje($pasajerosViajeN){
         $this->pasajerosViaje=$pasajerosViajeN;
     }
-    //set del array pasajeros
+    //"sets" para modificacion del array pasajeros
     public function cambiarNombrePasajero($nombreN, $nroPasajero){
         $this->pasajerosViaje[$nroPasajero-1]['nombre']=strtoupper($nombreN);
     }
@@ -62,6 +62,8 @@ class Viaje{
     }
     //METODOS QUE AGREGUE YO
     public function darDatosPasajero($nroPasajero){
+        // muestra datos del pasajero. me dijeron que en los metodos no iba nada de texto a pantalla 
+        //pero no sabia donde poner esto
         linea();
         echo "PASAJERO N°: ". $nroPasajero . "\n";
         linea();
@@ -90,6 +92,7 @@ class Viaje{
     public function reiniciarObj(){
         /**
          * inicia el objeto desde 0
+         * si hubiera usado un arrays para guardar viajes lo hubiera hecho distinto
          */
         $pasajeroN[0]=array('nombre' => null, 'apellido'=> null , 'documento'=>null);
         
@@ -111,17 +114,8 @@ class Viaje{
     }
 
 }
-function reiniciarObj($obj){
-    /**
-     * inicia el objeto desde 0
-     */
-    $pasajeroN[0]=array('nombre' => null, 'apellido'=> null , 'documento'=>null);
-    
-    $obj->setCodigo(null);
-    $obj->setDestino(null);
-    $obj->setCantMaxPasajeros(null);
-    $obj->setPasajerosViaje($pasajeroN);
-}
+
 function linea(){
+    //una linea y salto de linea
     echo "=======================================\n";
 }

@@ -216,7 +216,7 @@ do {
                         $viaje1->eliminarPasajero($pasajeroN);
                     }
                     elseif ($respuesta=="NO") {
-                        //no pasa nada vuelve a empezar
+                        //no pasa nada vuelve a empezar desde el menu
                     }  
                 }
                 elseif ($respuesta==3) {
@@ -241,6 +241,7 @@ do {
                     linea();
                     echo "\nDATOS NUEVOS A MODIFICAR\n";
                     linea();
+                    //pido los nuevos datos
                     echo "\nNombre nuevo: ";
                     $nombreN=strtoupper(trim(fgets(STDIN)));
                     echo "\nApellido nuevo: ";
@@ -256,6 +257,7 @@ do {
             }    
             break;
         case 3:
+            //3)mostrar datos
             echo "1). mostrar un pasajero en especifico.\n";
             echo "2). mostrar toda la lista de los pasajeros.\n";
             echo "3). mostrar datos del viaje.\n";
