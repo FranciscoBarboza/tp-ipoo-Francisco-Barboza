@@ -65,9 +65,9 @@ class Viaje{
         linea();
         echo "PASAJERO N°: ". $nroPasajero . "\n";
         linea();
-        echo "nombre: ". $this->darNombrePasajero($nroPasajero);
-        echo "\napellido: ". $this->darApellidoPasajero($nroPasajero);
-        echo "\ndocumento: ". $this->darNroDeDocPasajero($nroPasajero) . "\n";
+        echo "Nombre: ". $this->darNombrePasajero($nroPasajero);
+        echo "\nApellido: ". $this->darApellidoPasajero($nroPasajero);
+        echo "\nDocumento: ". $this->darNroDeDocPasajero($nroPasajero) . "\n";
     }
     public function mostrarlistaPasajeros(){
         /**muestra la lista de pasajeros */
@@ -83,7 +83,7 @@ class Viaje{
          * agrega pasajeros a una lista con pasajeros
          * pushea el nuevo pasajero al array
          */
-        $aux=$this->getCantMaxPasajeros();
+        $aux=$this->getPasajerosViaje();
         array_push($aux,['nombre'=>$nombreN, 'apellido'=>$apellidoN, 'documento'=>$documentoN]);
         $this->setPasajerosViaje($aux);
     }
@@ -103,7 +103,7 @@ class Viaje{
         array_splice($nuevoArray, ($pasajeroN-1), 1);
         $this->setPasajerosViaje($nuevoArray);
 
-        echo "\nnueva cantidad de pasajeros: ". count($this->getPasajerosViaje());
+        echo "\nNueva cantidad de pasajeros: ". count($this->getPasajerosViaje());
     }
     public function __toString()
     {
