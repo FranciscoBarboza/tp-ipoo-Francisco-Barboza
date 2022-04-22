@@ -151,6 +151,9 @@ class Viaje{
         }
         return $listaDePasajeros;
     }
+    public function hayPasajeroRepetido(){
+        //busca en el array pasajerosviaje 
+    }
 
 }
 

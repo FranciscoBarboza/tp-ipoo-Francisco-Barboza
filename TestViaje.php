@@ -446,13 +446,13 @@ do {
                 echo "Codigo: ". $viaje1->getCodigo(). "\n";
                 echo "Destino: ". $viaje1->getDestino(). "\n";
                 echo "Cantadidad maxima de pasajeros: ". $viaje1->getCantMaxPasajeros() . "\n";
-                echo "Responsable del viaje" . $viaje1->getResponsableV()->getNombre(). " " . $viaje1->getResponsableV()->getApellido();
+                echo "Responsable del viaje " . $viaje1->getResponsableV()->getNombre(). " " . $viaje1->getResponsableV()->getApellido();
                 /* esto lo hago porque el count me toma el [0] vacio como un pasajero aunque este vacio */
                 if (($viaje1->getPasajerosViaje()[0]) == null) {
                     echo "Pasajero actuales: ". 0;
                 }
                 else {
-                    echo "Pasajeros actuales: ". count($viaje1->getPasajerosViaje());
+                    echo "\nPasajeros actuales: ". count($viaje1->getPasajerosViaje());
                 }
             }
             elseif ($respuesta==4) {
