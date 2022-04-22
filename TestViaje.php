@@ -140,8 +140,11 @@ do {
                         do {
                             echo "\nDocumento: ";
                             $documentoN=trim(fgets(STDIN));
+                            $encontrado= $viaje1->hayPasajeroRepetido($documentoN);
+
                             if (!(is_numeric($documentoN))) {
                                 echo "ERROR: ingrese un numero de documento\n";
+                                
                             }
                             //busco que no haya ingresado el documento repetido
                             $encontrado=false;

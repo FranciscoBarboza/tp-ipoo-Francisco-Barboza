@@ -151,9 +151,44 @@ class Viaje{
         }
         return $listaDePasajeros;
     }
-    public function hayPasajeroRepetido(){
-        //busca en el array pasajerosviaje si hay pasajeros iguales
+    public function hayPasajeroRepetido($documentoN){//devuelve true o false en caso de dni repetido
+        $cantidadPasajeros=count($this->getPasajerosViaje());
+        $listaDePasajeros=$this->getPasajerosViaje();
+        $encontrado=false;
+        $i=0;
+
+        while (!($encontrado) && ($i < $cantidadPasajeros)) {//recorrido completo buscando un documento igual
+            if ($listaDePasajeros[$i] == $documentoN) {
+                $encontrado=true;
+            }
+            $i=$i+1;
+        }
+        return $encontrado;
     }
+
+    /* do                        
+
+                        //validacion para ingresar un numero en documento
+                        $cantidadPasajeros= count($viaje1->getPasajerosViaje());
+                        do {
+                            echo "\nDocumento: ";
+                            $documentoN=trim(fgets(STDIN));
+                            if (!(is_numeric($documentoN))) {
+                                echo "ERROR: ingrese un numero de documento\n";
+                            }
+                            //busco que no haya ingresado el documento repetido
+                            $encontrado=false;
+                            $i=0;
+
+                            while (!($encontrado) || ($i < (count($viaje1->getPasajerosViaje())))) {
+                                
+                                if ($viaje1->getPasajerosViaje()[$i]) {
+                                    $encontrado= true;
+                                    echo "ERROR: este pasajero ya existe\n";
+                                }
+                                $i=$i+1;
+                            }
+                        } while (!(is_numeric($documentoN)) || ($encontrado== true)); */
 
 
 
