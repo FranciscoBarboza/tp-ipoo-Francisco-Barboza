@@ -1,9 +1,29 @@
 <?php
 include_once("Viaje.php");
+include_once("Persona.php");
+include_once("Responsable.php");
 
-//inicio el objeto
-$pasajeroN[0]=array('nombre' => null, 'apellido'=> null , 'documento'=>null);
-$viaje1=new Viaje(null,null,null,$pasajeroN);
+
+//todo esto es para inicializar una de ejemplo
+
+$responsable1= new ResponsableV(null, null, null, null);
+$viaje1=new Viaje(null,null,null,null, $responsable1);
+
+$responsable1= new ResponsableV(15438, 548819731, "carlos", "villagran");
+
+$viaje1= new Viaje(275, "BRAZIL", 3, $responsable1);
+
+$pasajero1= new Persona("MARCOS", "AURELIO", 8649831, 158849231);
+$pasajero2= new Persona("TOMAS", "ROJAS", 42165680, 15498246);
+$pasajero3= new Persona("BRAULIO", "GARCIA", 16486297, 158849231);
+$ListaDePasajeros1=array($pasajero1, $pasajero2, $pasajero3);
+
+$viaje1->setPasajerosViaje($ListaDePasajeros1);
+
+//hasta aca
+
+
+
 do {
     echo "\n";
     linea();
@@ -20,7 +40,50 @@ do {
         case 1:
             $viaje1->reiniciarObj();
             //menu para la opcion 1) cargar informacion de un viaje
-            //validacion para no dejar vacio el codigo de viaje
+            //validacion para no dejar vacio el codigo de 
+            echo "\nNecesita un responsable para el viaje. \n";
+            //nombre del responsable
+            do {//validacion para ingresar un nombre valido
+                echo "\ningrese nombre del responsable: ";
+                $nombResponsable= strtoupper(trim(fgets(STDIN)));
+                if (is_numeric($nombResponsable)) {
+                    echo "\nERROR: ingrese un numero valido.";
+                }
+            } while (is_numeric($nombResponsable));
+            
+            $viaje1->getResponsableV()->setNombre($nombResponsable);//agrego el nombre del responsable
+
+            do {
+                echo "\nIngrese apellido responsable: ";
+                $apellResponsable= strtoupper(trim(fgets(STDIN)));
+                if (is_numeric($apellResponsable)) {
+                    echo "\nERROR ingrese un apellido valido.";
+                }
+            } while (is_numeric($apellResponsable));
+
+            $viaje1->getResponsableV()->setApellido($apellResponsable);
+
+            do {
+                echo "\nIngrese N° empleado: ";
+                $nroEmpResponsable= trim(fgets(STDIN));
+
+                if (!(is_numeric($nroEmpResponsable))) {
+                    echo "ERROR: ingrese un numero de empleado correspondiente.";
+                }
+            } while (!(is_numeric($nroEmpResponsable)));
+
+            $viaje1->getResponsableV()->setNroEmpleado($nroEmpResponsable);
+
+            do {
+                echo "\nIngrese N° de licencia: ";
+                $NlicenResponsable= trim(fgets(STDIN));
+                if (!(is_numeric($NlicenResponsable))) {
+                    echo "\nERROR: ingrese un numero de licencia correspondiente.";
+                }
+            } while (!(is_numeric($NlicenResponsable)));
+
+            $viaje1->getResponsableV()->setNroLicencia();
+
             do {
                 echo "\nIngrese codigo de viaje: ";
                 $codigoN=trim(fgets(STDIN));
@@ -71,11 +134,35 @@ do {
                         echo "\nApellido: ";
                         $apellidoN=strtoupper(trim(fgets(STDIN)));
                         echo "\nDocumento: ";
-                        $documentoN=strtoupper(trim(fgets(STDIN)));
-                        $viaje1->cambiarNombrePasajero($nombreN, $i);
-                        $viaje1->cambiarApellidoPasajero($apellidoN, $i);
-                        $viaje1->cambiarDocumentoPasajero($documentoN, $i);
+
+                        //validacion para ingresar un numero en documento
+                        do {
+                            $documentoN=trim(fgets(STDIN));
+                            if (!(is_numeric($documentoN))) {
+                                echo "ERROR: ingrese un numero de documento\n";
+                            }
+
+                        } while (!(is_numeric($documentoN)));
+
+                        echo "\nTelefono: ";
+                        //validacion para ingresar un numero en telefono
+                        do {
+                            $telefonoN=trim(fgets(STDIN));
+                            if (!(is_numeric($telefonoN))) {
+                                echo "ERROR: ingrese un numero de telefono\n";
+                            }
+
+                        } while (!(is_numeric($telefonoN)));
                         
+                        //inicializo la clase persona nueva
+                        $Persona= new Persona($nombreN, $apellidoN, $documentoN,$telefonoN);
+
+                        $auxListaPasajeros=$this->getPasajerosViaje();
+                        
+                        array_push($auxListaPasajeros, $Persona);
+
+                        $this->setPasajerosViaje($auxListaPasajeros);
+                
                         echo "\nPasajeros: ". count($viaje1->getPasajerosViaje()). " de ". $viaje1->getCantMaxPasajeros(). " disponibles\n";
                         echo "Quiere ingresar otro pasajero?(si/no): ";
                         do {
@@ -102,10 +189,11 @@ do {
                 echo "\n2). Destino del viaje.";
                 echo "\n3). Cantidad maxima de pasajeros (no puede ser menor a la actual).";
                 echo "\n4). Modificar pasajeros.";
-                echo "\n5). Terminar de modificar.\n";
+                echo "\n5). modificar datos del responsable.";
+                echo "\n6). Terminar de modificar.\n";
                 $respuesta=trim(fgets(STDIN));
                 // validacion por sino ingresa un numero entre 1 o 3 por eso el do while
-                if (!(is_int($respuesta)) && !($respuesta>=0) && !($respuesta<=5)) {
+                if (!(is_int($respuesta)) && !($respuesta>=0) && !($respuesta<=6)) {
                     echo "\nERROR: ingrese un numero entre 1 y 5";
                 }
             } while (!(is_int($respuesta)) && !($respuesta>=0) && !($respuesta<=5));
@@ -161,16 +249,16 @@ do {
                     echo "1) Ingresar pasajero nuevo.\n";
                     echo "2) Eliminar pasajero.\n";
                     echo "3) Modificar pasajero.\n";
-                    echo "4) Dejar de modificar.\n";
+                    echo "4) Dejar de modificat\n";
                     $respuesta= trim(fgets(STDIN));
                     if (($respuesta > 4) && ($respuesta < 1) && !(is_int($respuesta))) {
                         echo "ERROR: ingrese un numero valido\n";
                     }
-                } while (($respuesta > 3) && ($respuesta < 1) && !(is_int($respuesta)));
+                } while (($respuesta > 4) && ($respuesta < 1) && !(is_int($respuesta)));
                 
                 if ($respuesta == 1) {
                     /**
-                     * 1)ingresa pasajeros hasta alcanzar el maximo
+                     * 1)ingresa 1 pasajero
                      */
                     $pasajerosAct= count($viaje1->getPasajerosViaje());
                     if (!($pasajerosAct < ($viaje1->getCantMaxPasajeros()))) {
@@ -189,6 +277,7 @@ do {
                     //pusheo al array
                     $viaje1->agregarPasajero($nombreN, $apellidoN, $documentoN);
                     }
+                    
                 }
                 elseif($respuesta==2){
                     do {
@@ -205,13 +294,15 @@ do {
                     } while (($pasajeroN > (count($viaje1->getPasajerosViaje()))) || ($pasajeroN > $viaje1->getCantMaxPasajeros()) || !($pasajeroN == is_numeric($pasajeroN)));
                     
                     //eliminacion de pasajero
-                    echo "\nPasajero n°: ". $pasajeroN;
-                    echo "\nNombre: ". $viaje1->darNombrePasajero($pasajeroN);
-                    echo "\nApellido: ". $viaje1->darApellidoPasajero($pasajeroN);
+                    /*echo "\nPasajero n°: ". $pasajeroN;
+                    echo "\nNombre: ". ($viaje1->getPasajerosViaje()[$pasajeroN-1])->getNombre();//$viaje1->darNombrePasajero($pasajeroN);
+                    echo "\nApellido: ". (//$viaje1->darApellidoPasajero($pasajeroN);
                     echo "\nDocumento: ". $viaje1->darNroDeDocPasajero($pasajeroN). "\n";
                     linea();
                     echo "Desea eliminar este pasajero?(si/no): ";
                     $respuesta=strtoupper(trim(fgets(STDIN)));
+                    */
+                    echo "\nPasajero n°: ". $pasajeroN . "\n". $viaje1->getPasajerosViaje()[$pasajeroN-1];
                     if ($respuesta== "SI") {
                         $viaje1->eliminarPasajero($pasajeroN);
                     }
@@ -235,10 +326,12 @@ do {
                     linea();
                     echo "PASAJERO N°: ". $pasajeroN. "\n";
                     linea();
-                    echo "\nNombre: ". $viaje1->darNombrePasajero($pasajeroN);
+                    /*echo "\nNombre: ". $viaje1->darNombrePasajero($pasajeroN);
                     echo "\nApellido: ". $viaje1->darApellidoPasajero($pasajeroN);
                     echo "\nDocumento: ". $viaje1->darNroDeDocPasajero($pasajeroN). "\n";
                     linea();
+                    */
+                    echo $viaje1->getPasajerosViaje()[$pasajeroN-1];
                     echo "\nDATOS NUEVOS A MODIFICAR\n";
                     linea();
                     //pido los nuevos datos
@@ -248,19 +341,83 @@ do {
                     $apellidoN=strtoupper(trim(fgets(STDIN)));
                     echo "\nDocumento nuevo: ";
                     $documentoN= strtoupper(trim(fgets(STDIN)));
+                    echo "\nTelefono: ";
+                    $telefonoN= trim(fgets(STDIN));
                     //cambio los nombres
-                    $viaje1->cambiarNombrePasajero($nombreN, $pasajeroN);
-                    $viaje1->cambiarApellidoPasajero($apellidoN, $pasajeroN);
-                    $viaje1->cambiarDocumentoPasajero($documentoN, $pasajeroN);
+                    //$viaje1->cambiarNombrePasajero($nombreN, $pasajeroN);
+                    //nombre
+                    ($viaje1->getPasajerosViaje()[$pasajeroN-1])->setNombre($nombreN);
+                    //apellido
+                    ($viaje1->getPasajerosViaje()[$pasajeroN-1])->setApellido($apellidoN);
+                    //DNI
+                    ($viaje1->getPasajerosViaje()[$pasajeroN-1])->setDNI($documentoN);
+                    //telefono
+                    ($viaje1->getPasajerosViaje()[$pasajeroN-1])->$telefonoN;
+                    
                     echo "\nDatos cambiados.";
+                    }
+                
+                elseif ($respuesta==4) {
+                    //termina
                 }
-            }    
+            }
+            elseif ($respuesta==5) {
+                //muestro datos del responsable actual
+                echo "\n=======================================\n".
+                "RESPONSABLE ACTUAL". 
+                "\n=======================================\n". 
+                $viaje1->getResponsableV();
+                //pido nuevos datos a modificar
+                do {//validacion para ingresar un nombre valido
+                    echo "\ningrese nombre del NUEVO responsable: ";
+                    $nombResponsable= strtoupper(trim(fgets(STDIN)));
+                    if (is_numeric($nombResponsable)) {
+                        echo "\nERROR: ingrese un numero valido.";
+                    }
+                } while (is_numeric($nombResponsable));
+                
+                $viaje1->getResponsableV()->setNombre($nombResponsable);//agrego el nombre del responsable
+    
+                do {
+                    echo "\nIngrese apellido del NUEVO responsable: ";
+                    $apellResponsable= strtoupper(trim(fgets(STDIN)));
+                    if (is_numeric($apellResponsable)) {
+                        echo "\nERROR ingrese un apellido valido.";
+                    }
+                } while (is_numeric($apellResponsable));
+    
+                $viaje1->getResponsableV()->setApellido($apellResponsable);
+    
+                do {
+                    echo "\nIngrese NUEVO N° empleado: ";
+                    $nroEmpResponsable= trim(fgets(STDIN));
+    
+                    if (!(is_numeric($nroEmpResponsable))) {
+                        echo "ERROR: ingrese un numero de empleado correspondiente.";
+                    }
+                } while (!(is_numeric($nroEmpResponsable)));
+    
+                $viaje1->getResponsableV()->setNroEmpleado($nroEmpResponsable);
+    
+                do {
+                    echo "\nIngrese NUEVO N° de licencia: ";
+                    $NlicenResponsable= trim(fgets(STDIN));
+                    if (!(is_numeric($NlicenResponsable))) {
+                        echo "\nERROR: ingrese un numero de licencia correspondiente.";
+                    }
+                } while (!(is_numeric($NlicenResponsable)));
+    
+                $viaje1->getResponsableV()->setNroLicencia($NlicenResponsable);
+                
+                echo "\n CAMBIOS REALIZADOS \n";
+            }
             break;
         case 3:
             //3)mostrar datos
             echo "1). mostrar un pasajero en especifico.\n";
             echo "2). mostrar toda la lista de los pasajeros.\n";
             echo "3). mostrar datos del viaje.\n";
+            echo "4). mostrar datos del responsable\n";
             
             $respuesta=trim(fgets(STDIN));
             if ($respuesta==1){
@@ -271,13 +428,13 @@ do {
                 if (($nroPasajeroN > (count($viaje1->getPasajerosViaje()))) && ($nroPasajeroN > $viaje1->getPasajerosViaje()) && !(is_int($nroPasajeroN))) {
                     echo "\nERROR: el numero de pasajero no existe o fue ingresado incorrectamente.";
                 }
-                } while (($pasajeroN > (count($viaje1->getPasajerosViaje()))) && ($pasajeroN > $viaje1->getPasajerosViaje()) && !(is_int($pasajeroN)));
+                } while (($nroPasajeroN > (count($viaje1->getPasajerosViaje()))) && ($nroPasajeroN > $viaje1->getPasajerosViaje()) && !(is_int($nroPasajeroN)));
                 //doy datos del pasajero con una funcion
-                $viaje1->darDatosPasajero($nroPasajeroN);
+                echo $viaje1->darDatosPasajero($nroPasajeroN);
 
             } elseif ($respuesta==2) {
                 //2) mostrar lista de pasajeros
-                $viaje1->mostrarlistaPasajeros();
+                echo $viaje1->listaDePasajeros();
             } elseif ($respuesta==3) {
                 //3)mostrar datos del viaje
                 linea();
@@ -286,13 +443,20 @@ do {
                 echo "Codigo: ". $viaje1->getCodigo(). "\n";
                 echo "Destino: ". $viaje1->getDestino(). "\n";
                 echo "Cantadidad maxima de pasajeros: ". $viaje1->getCantMaxPasajeros() . "\n";
+                echo "Responsable del viaje" . $viaje1->getResponsableV()->getNombre(). " " . $viaje1->getResponsableV()->getApellido();
                 /* esto lo hago porque el count me toma el [0] vacio como un pasajero aunque este vacio */
-                if (($viaje1->getPasajerosViaje()[0]['nombre']) == null) {
+                if (($viaje1->getPasajerosViaje()[0]) == null) {
                     echo "Pasajero actuales: ". 0;
                 }
                 else {
                     echo "Pasajeros actuales: ". count($viaje1->getPasajerosViaje());
                 }
+            }
+            elseif ($respuesta==4) {
+                echo "\n=======================================\n".
+                "DATOS DEL RESPONSABLE". 
+                "\n=======================================\n".
+                $viaje1->getResponsableV();
             }
             break;
         case 4:
