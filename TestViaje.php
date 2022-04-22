@@ -1,7 +1,7 @@
 <?php
 include_once("Viaje.php");
 include_once("Persona.php");
-include_once("Responsable.php");
+include_once("ResponsableV.php");
 
 
 //todo esto es para inicializar una de ejemplo
@@ -82,7 +82,7 @@ do {
                 }
             } while (!(is_numeric($NlicenResponsable)));
 
-            $viaje1->getResponsableV()->setNroLicencia();
+            $viaje1->getResponsableV()->setNroLicencia($NlicenResponsable);
 
             do {
                 echo "\nIngrese codigo de viaje: ";
@@ -157,11 +157,11 @@ do {
                         //inicializo la clase persona nueva
                         $Persona= new Persona($nombreN, $apellidoN, $documentoN,$telefonoN);
 
-                        $auxListaPasajeros=$this->getPasajerosViaje();
+                        $auxListaPasajeros=$viaje1->getPasajerosViaje();
                         
                         array_push($auxListaPasajeros, $Persona);
 
-                        $this->setPasajerosViaje($auxListaPasajeros);
+                        $viaje1->setPasajerosViaje($auxListaPasajeros);
                 
                         echo "\nPasajeros: ". count($viaje1->getPasajerosViaje()). " de ". $viaje1->getCantMaxPasajeros(). " disponibles\n";
                         echo "Quiere ingresar otro pasajero?(si/no): ";
@@ -285,7 +285,7 @@ do {
 
                         echo "\nCantidad actual de pasajeros: ". (count($viaje1->getPasajerosViaje()));
                         echo "\nCantidad actual maxima de pasajeros: ". ($viaje1->getCantMaxPasajeros());
-                        echo "\nCngrese numero de pasajero: ";
+                        echo "\nIngrese numero de pasajero: ";
                         $pasajeroN= trim(fgets(STDIN));
                         //validacion para poner un numero correcto
                         if (($pasajeroN > (count($viaje1->getPasajerosViaje()))) || ($pasajeroN > $viaje1->getCantMaxPasajeros()) || !($pasajeroN == is_numeric($pasajeroN))) {
@@ -302,7 +302,10 @@ do {
                     echo "Desea eliminar este pasajero?(si/no): ";
                     $respuesta=strtoupper(trim(fgets(STDIN)));
                     */
-                    echo "\nPasajero n°: ". $pasajeroN . "\n". $viaje1->getPasajerosViaje()[$pasajeroN-1];
+                    echo "\nPasajero n°: ". $pasajeroN . "\n". $viaje1->getPasajerosViaje()[$pasajeroN-1] . "\n";
+                    linea();
+                    echo "Desea eliminar este pasajero?(si/no): ";
+                    $respuesta=strtoupper(trim(fgets(STDIN)));
                     if ($respuesta== "SI") {
                         $viaje1->eliminarPasajero($pasajeroN);
                     }

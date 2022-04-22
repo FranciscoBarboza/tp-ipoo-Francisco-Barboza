@@ -12,7 +12,10 @@ apellido.
 
 La clase Viaje debe hacer referencia al responsable de realizar el viaje. 
 
-Volver a implementar las operaciones que permiten modificar el nombre, apellido y teléfono de un pasajero. Luego implementar la operación que agrega los pasajeros al viaje, solicitando por consola la información de los mismos. Se debe verificar que el pasajero no este cargado mas de una vez en el viaje. De la misma forma cargue la información del responsable del viaje.
+Volver a implementar las operaciones que permiten modificar el nombre, apellido y teléfono de un pasajero. Luego implementar la operación que 
+agrega los pasajeros al viaje, solicitando por consola la información de los mismos.
+ Se debe verificar que el pasajero no este cargado mas de una vez en el viaje.
+  De la misma forma cargue la información del responsable del viaje.
 Nota: Recuerden que deben enviar el link a la resolución en su repositorio en GitHub. */
 
 class ResponsableV{
