@@ -152,8 +152,10 @@ class Viaje{
         return $listaDePasajeros;
     }
     public function hayPasajeroRepetido(){
-        //busca en el array pasajerosviaje 
+        //busca en el array pasajerosviaje si hay pasajeros iguales
     }
+
+
 
 }
 

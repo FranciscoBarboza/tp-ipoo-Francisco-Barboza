@@ -133,16 +133,29 @@ do {
                         $nombreN=strtoupper(trim(fgets(STDIN)));
                         echo "\nApellido: ";
                         $apellidoN=strtoupper(trim(fgets(STDIN)));
-                        echo "\nDocumento: ";
+                        
 
                         //validacion para ingresar un numero en documento
+                        $cantidadPasajeros= count($viaje1->getPasajerosViaje());
                         do {
+                            echo "\nDocumento: ";
                             $documentoN=trim(fgets(STDIN));
                             if (!(is_numeric($documentoN))) {
                                 echo "ERROR: ingrese un numero de documento\n";
                             }
+                            //busco que no haya ingresado el documento repetido
+                            $encontrado=false;
+                            $i=0;
 
-                        } while (!(is_numeric($documentoN)));
+                            while (!($encontrado) || ($i < (count($viaje1->getPasajerosViaje())))) {
+                                
+                                if ($viaje1->getPasajerosViaje()[$i]) {
+                                    $encontrado= true;
+                                    echo "ERROR: este pasajero ya existe\n";
+                                }
+                                $i=$i+1;
+                            }
+                        } while (!(is_numeric($documentoN)) || ($encontrado== true));
 
                         echo "\nTelefono: ";
                         //validacion para ingresar un numero en telefono
@@ -293,15 +306,6 @@ do {
                         }
                     } while (($pasajeroN > (count($viaje1->getPasajerosViaje()))) || ($pasajeroN > $viaje1->getCantMaxPasajeros()) || !($pasajeroN == is_numeric($pasajeroN)));
                     
-                    //eliminacion de pasajero
-                    /*echo "\nPasajero n°: ". $pasajeroN;
-                    echo "\nNombre: ". ($viaje1->getPasajerosViaje()[$pasajeroN-1])->getNombre();//$viaje1->darNombrePasajero($pasajeroN);
-                    echo "\nApellido: ". (//$viaje1->darApellidoPasajero($pasajeroN);
-                    echo "\nDocumento: ". $viaje1->darNroDeDocPasajero($pasajeroN). "\n";
-                    linea();
-                    echo "Desea eliminar este pasajero?(si/no): ";
-                    $respuesta=strtoupper(trim(fgets(STDIN)));
-                    */
                     echo "\nPasajero n°: ". $pasajeroN . "\n". $viaje1->getPasajerosViaje()[$pasajeroN-1] . "\n";
                     linea();
                     echo "Desea eliminar este pasajero?(si/no): ";
@@ -321,10 +325,10 @@ do {
                         echo "\nIngrese numero de pasajero: ";
                         $pasajeroN= trim(fgets(STDIN));
                         //validacion para poner un numero correcto
-                        if (($pasajeroN > (count($viaje1->getPasajerosViaje()))) && ($pasajeroN > $viaje1->getPasajerosViaje()) && !(is_int($pasajeroN))) {
+                        if (($pasajeroN > (count($viaje1->getPasajerosViaje()))) ||  !(is_numeric($pasajeroN))) {
                             echo "\nERROR: el numero de pasajero no existe o fue ingresado incorrectamente.";
                         }
-                    } while (($pasajeroN > (count($viaje1->getPasajerosViaje()))) && ($pasajeroN > $viaje1->getPasajerosViaje()) && !(is_int($pasajeroN)));
+                    } while (($pasajeroN > (count($viaje1->getPasajerosViaje()))) || !(is_numeric($pasajeroN)));
                     //datos nuevos del pasajero
                     linea();
                     echo "PASAJERO N°: ". $pasajeroN. "\n";
@@ -342,8 +346,31 @@ do {
                     $nombreN=strtoupper(trim(fgets(STDIN)));
                     echo "\nApellido nuevo: ";
                     $apellidoN=strtoupper(trim(fgets(STDIN)));
-                    echo "\nDocumento nuevo: ";
-                    $documentoN= strtoupper(trim(fgets(STDIN)));
+                    $totalPasajeros=count($viaje1->getPasajerosViaje());
+                    do {
+                        echo "\nDocumento nuevo: ";
+                        $documentoN= trim(fgets(STDIN));
+                        if (!(is_numeric($documentoN))) {
+                            echo "\nERROR: ingrese un numero de documento";
+                        }
+
+                        $encontrado=false;
+                    $i=0;
+                    while (($encontrado==false) && ($i < $totalPasajeros)) {
+                                
+                        if ((($viaje1->getPasajerosViaje())[$i]->getDNI())==$documentoN) {
+                            $encontrado= true;
+                            echo "\nERROR: este pasajero ya existe, ingrese un dni distinto\n";
+                        }
+                        $i=$i+1;
+                    }
+
+                    } while (($encontrado==true) || !(is_numeric($documentoN)));
+                    
+                    
+                    
+                    
+                    
                     echo "\nTelefono: ";
                     $telefonoN= trim(fgets(STDIN));
                     //cambio los nombres
@@ -355,7 +382,7 @@ do {
                     //DNI
                     ($viaje1->getPasajerosViaje()[$pasajeroN-1])->setDNI($documentoN);
                     //telefono
-                    ($viaje1->getPasajerosViaje()[$pasajeroN-1])->$telefonoN;
+                    ($viaje1->getPasajerosViaje()[$pasajeroN-1])->setTelefono($telefonoN);
                     
                     echo "\nDatos cambiados.";
                     }
