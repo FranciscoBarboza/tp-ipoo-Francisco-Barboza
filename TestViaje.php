@@ -140,25 +140,18 @@ do {
                         do {
                             echo "\nDocumento: ";
                             $documentoN=trim(fgets(STDIN));
-                            $encontrado= $viaje1->hayPasajeroRepetido($documentoN);
 
                             if (!(is_numeric($documentoN))) {
                                 echo "ERROR: ingrese un numero de documento\n";
-                                
-                            }
-                            //busco que no haya ingresado el documento repetido
-                            $encontrado=false;
-                            $i=0;
 
-                            while (!($encontrado) || ($i < (count($viaje1->getPasajerosViaje())))) {
-                                
-                                if ($viaje1->getPasajerosViaje()[$i]) {
-                                    $encontrado= true;
-                                    echo "ERROR: este pasajero ya existe\n";
-                                }
-                                $i=$i+1;
                             }
-                        } while (!(is_numeric($documentoN)) || ($encontrado== true));
+                            $encontrado= $viaje1->hayPasajeroRepetido($documentoN);
+                            
+                            if ($encontrado) {
+                                echo "ERROR: este pasajero ya existe";
+                            }
+                            
+                        } while (!(is_numeric($documentoN)) || ($encontrado));
 
                         echo "\nTelefono: ";
                         //validacion para ingresar un numero en telefono
@@ -353,20 +346,14 @@ do {
                     do {
                         echo "\nDocumento nuevo: ";
                         $documentoN= trim(fgets(STDIN));
-                        if (!(is_numeric($documentoN))) {
-                            echo "\nERROR: ingrese un numero de documento";
-                        }
 
-                        $encontrado=false;
-                    $i=0;
-                    while (($encontrado==false) && ($i < $totalPasajeros)) {
-                                
-                        if ((($viaje1->getPasajerosViaje())[$i]->getDNI())==$documentoN) {
-                            $encontrado= true;
-                            echo "\nERROR: este pasajero ya existe, ingrese un dni distinto\n";
+                        if (!(is_numeric($documentoN))) {
+                            echo "ERROR: ingrese un numero de documento valido\n";
                         }
-                        $i=$i+1;
-                    }
+                        $encontrado= $viaje1->hayPasajeroRepetido($documentoN);
+                        if ($encontrado) {
+                            echo "ERROR: este pasajero ya existe ingrese otro\n";
+                        }
 
                     } while (($encontrado==true) || !(is_numeric($documentoN)));
                     

@@ -89,7 +89,7 @@ class Viaje{
         "=======================================\n".
         "Nombre: ". ($this->getPasajerosViaje()[$nroPasajero-1])->getNombre().
         "\nApellido: ". ($this->getPasajerosViaje()[$nroPasajero-1])->getApellido().
-        "\nDNI: ". ($this->getPasajerosViaje()[$nroPasajero-1])->getDNI();
+        "\nDNI: ". ($this->getPasajerosViaje()[$nroPasajero-1])->getDNI().
         "\nTelefono: ". ($this->getPasajerosViaje()[$nroPasajero-1])->getTelefono();
     }
     public function mostrarlistaPasajeros(){
@@ -158,7 +158,8 @@ class Viaje{
         $i=0;
 
         while (!($encontrado) && ($i < $cantidadPasajeros)) {//recorrido completo buscando un documento igual
-            if ($listaDePasajeros[$i] == $documentoN) {
+
+            if ($listaDePasajeros[$i]->getDNI() == $documentoN) {
                 $encontrado=true;
             }
             $i=$i+1;
