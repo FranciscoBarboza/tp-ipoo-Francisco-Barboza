@@ -392,7 +392,7 @@ do {
                     echo "\ningrese nombre del NUEVO responsable: ";
                     $nombResponsable= strtoupper(trim(fgets(STDIN)));
                     if (is_numeric($nombResponsable)) {
-                        echo "\nERROR: ingrese un numero valido.";
+                        echo "\nERROR: ingrese un nombre valido.";
                     }
                 } while (is_numeric($nombResponsable));
                 
