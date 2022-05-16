@@ -1,19 +1,29 @@
 <?php
 include_once("Persona.php");
+/**
+ * @param bool $tieneVuelta
+ */
+
+
 class Viaje{
     private $codigo;
     private $destino;
     private $cantMaxPasajeros;
     private $pasajerosViaje;
     private $responsableV;
+    private bool $tieneVuelta;
 
-    public function __construct($codigoN, $destinoN, $cantMaxPasajerosN, $responsableV)
+    /**
+     * @param bool $tieneVueltaV
+     */
+    public function __construct($codigoN, $destinoN, $cantMaxPasajerosN, $responsableV, $tieneVueltaV)
     {
         $this->codigo=$codigoN;
         $this->destino=$destinoN;
         $this->cantMaxPasajeros=$cantMaxPasajerosN;
         $this->pasajerosViaje=array();
         $this->responsableV= $responsableV;
+        $this->tieneVuelta= $tieneVueltaV;
     }
     //gets
     public function getCodigo(){
@@ -30,6 +40,14 @@ class Viaje{
     }
     public function getResponsableV(){
         return $this->responsableV;
+    }
+
+    public function getTieneVuelta(){
+        return $this->tieneVuelta;
+    }
+
+    public function setTieneVuelta($tieneVuelta){
+        $this->tieneVuelta = $tieneVuelta;
     }
 
     //"gets" para el array asociativo nombre y apellido a cambiar
@@ -199,4 +217,6 @@ function linea(){
     //una linea y salto de linea
     echo "=======================================\n";
 
+
+    
 }
