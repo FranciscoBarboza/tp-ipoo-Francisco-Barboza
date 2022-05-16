@@ -184,6 +184,20 @@ class Viaje{
         }
         return $encontrado;
     }
+    /**
+     * retorna true si hay uno o mas pasajes disponibles
+     * @param bool return 
+     */
+    public function hayPasajesDisponible(){
+        $hayPasajes=false;
+
+        $maxPasajeros= $this->getCantMaxPasajeros();
+        $pasajerosActuales= count($this->getPasajerosViaje());
+        if ($maxPasajeros < $pasajerosActuales) {
+            $hayPasajes= true;
+        }
+        return $hayPasajes;
+    }
 
     /* do                        
 
