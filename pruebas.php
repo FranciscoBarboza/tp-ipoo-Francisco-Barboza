@@ -16,6 +16,9 @@ echo $prueba;
 $prueba2= new prueba2;
 echo "\n". $prueba2;
 
+$array=["a",2,3];
 
+print_r($array);
 
+echo 2222;
 

@@ -33,6 +33,7 @@ $viaje2=new Aereo(275, "BRAZIL", 3, $responsable1, $tieneVuelta, 5000, 2, "PRIME
 
 $viaje3= new terrestre(275, "ARGENTINA", 2, $responsable1, false, $importe, "CAMA");
 
+$viajes=[$viajeA, $viaje2, $viaje3];
 //hasta aca
 
 
@@ -52,6 +53,14 @@ do {
     switch ($respMainMenu) {
         case 1:
             $viaje1->reiniciarObj();
+            echo "\nindique tipo de viaje: 1)aereo 2)terrestre";
+            $tipoDeViaje=trim(fgets(STDIN));
+            if ($tipoDeViaje==1) {
+                $viaje1=$viajes[1];
+            }
+            if ($tipoDeviaje==2) {
+                $viaje1=$viajes[2];
+            }
             //menu para la opcion 1) cargar informacion de un viaje
             //validacion para no dejar vacio el codigo de 
             echo "\nNecesita un responsable para el viaje. \n";
@@ -124,11 +133,60 @@ do {
                 echo "ERROR: debe ingresar una cantidad maxima de pasajeros(numero).\n";
             }
             } while (($cantMaxPasajerosN==null) || !($cantMaxPasajerosN == is_numeric($cantMaxPasajerosN)));
-        
+            
             //seteo todo
             $viaje1->setCodigo($codigoN);
             $viaje1->setDestino($destinoN);
             $viaje1->setCantMaxPasajeros($cantMaxPasajerosN);
+
+            //16/5
+            echo "\ningrese importe del viaje: ";
+            $importeNuevo=trim(fgets(STDIN));
+
+            echo "\nEs ida y vuelta?. si/no:";
+            $respAux= strtoupper(trim(fgets(STDIN)));
+            //seteo lo nuevo
+            if ($respAux== "SI") {
+                $viaje1->setTieneVuelta(true);
+            }
+            if ($respAux=="NO") {
+                $viaje1->setTieneVuelta(false);
+            }
+
+            //seteo lo nuevo 
+            $viaje1->setImporte($importeNuevo);
+
+
+
+            if ($tipoDeViaje == 1) {
+                echo "\nIngrese el número de vuelo: ";
+                $numVuelo = trim(fgets(STDIN));
+                do {
+                    echo "\nIngrese la categoría de Asientos:\nPrimera Clase = 1\nEstandar = 2\n";
+                    $catAsientos = trim(fgets(STDIN));
+                    if ($catAsientos > 2 || $catAsientos < 1) {
+                        echo "\nIngrese una opción correcta\n";
+                    }
+                } while ($catAsientos > 2 || $catAsientos < 1);
+                if ($catAsientos == 2) {
+                    $catAsientos = "SEGUNDA CLASE";
+                } else {
+                    $catAsientos = "PRIMERA CLASE";
+                }
+                echo "\nIngrese el nombre de la Aerolinea: ";
+                $nomAero = trim(fgets(STDIN));
+                echo "\nIngrese la cantidad de Escalas: ";
+                $cantEscalas = trim(fgets(STDIN));
+        
+                //seteo lo nuevo
+                $viaje1->setNumeroVuelo($numVuelo);
+                $viaje1->
+            }
+
+
+
+
+
             echo "\nQuiere ingresar un pasajero?(si/no): ";
             //usa strtoupper para evitar errores por las minusculas
             do {
