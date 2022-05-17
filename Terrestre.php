@@ -10,11 +10,11 @@ class Terrestre extends Viaje{
      * @param bool $tieneVueltaV
      * @param $comodidad
      */
-    public function __construct($codigoN, $destinoN, $cantMaxPasajerosN, $responsableV, $tieneVueltaV, $comodidadV)
+    public function __construct($codigoN, $destinoN, $cantMaxPasajerosN, $responsableV, $tieneVueltaV, $importeV, $comodidadV)
     {
         $this->comodidad= $comodidadV;
 
-        parent::__construct($codigoN, $destinoN,$cantMaxPasajerosN,$responsableV,$tieneVueltaV);
+        parent::__construct($codigoN, $destinoN,$cantMaxPasajerosN,$responsableV,$tieneVueltaV, $importeV);
     }
 
     public function getComodidad(){
@@ -24,6 +24,17 @@ class Terrestre extends Viaje{
     public function setComodidad($comodidad){
         $this->comodidad = $comodidad;
     }
+
+    //Si el viaje es "Terrestre" y el asiento es CAMA, se incrementa el importe un 25%
+    public function venderPasaje($pasajero){
+        $ImporteAux= $this->getImporte();
+        $tipoAsiento= $this->getComodidad();
+        if ($tipoAsiento == "CAMA") {
+            
+        }
+    }
+
+
 
     public function __toString()
     {

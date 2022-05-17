@@ -12,11 +12,12 @@ class Viaje{
     private $pasajerosViaje;
     private $responsableV;
     private bool $tieneVuelta;
+    private int $importe;
 
     /**
      * @param bool $tieneVueltaV
      */
-    public function __construct($codigoN, $destinoN, $cantMaxPasajerosN, $responsableV, $tieneVueltaV)
+    public function __construct($codigoN, $destinoN, $cantMaxPasajerosN, $responsableV, $tieneVueltaV, $importeV)
     {
         $this->codigo=$codigoN;
         $this->destino=$destinoN;
@@ -24,6 +25,7 @@ class Viaje{
         $this->pasajerosViaje=array();
         $this->responsableV= $responsableV;
         $this->tieneVuelta= $tieneVueltaV;
+        $this->importe= $importeV;
     }
     //gets
     public function getCodigo(){
@@ -48,6 +50,14 @@ class Viaje{
 
     public function setTieneVuelta($tieneVuelta){
         $this->tieneVuelta = $tieneVuelta;
+    }
+
+    public function getImporte(){
+        return $this->importe;
+    }
+
+    public function setImporte($importe){
+        $this->importe = $importe;
     }
 
     //"gets" para el array asociativo nombre y apellido a cambiar
@@ -199,6 +209,14 @@ class Viaje{
         return $hayPasajes;
     }
 
+    public function venderPasaje($pasajero){
+        $pasajerosViaje=$this->getPasajerosViaje();
+        if ($this->hayPasajesDisponible()) {
+
+            array_push($pasajerosViaje, $pasajero);
+        }
+    }
+
     /* do                        
 
                         //validacion para ingresar un numero en documento
@@ -231,6 +249,8 @@ function linea(){
     //una linea y salto de linea
     echo "=======================================\n";
 
+
+    
 
     
 }

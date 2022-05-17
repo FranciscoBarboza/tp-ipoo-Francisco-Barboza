@@ -8,14 +8,14 @@ class Aereo extends Viaje{
     private $nombreAerolinea;
     private $cantidadEscalas;
 
-    public function __construct($codigoN, $destinoN, $cantMaxPasajerosN, $responsableV, $tieneVueltaV, $numeroVueloV, $asientoCategoriaV,$nombreAerolineaV,$cantidadEscalasV)
+    public function __construct($codigoN, $destinoN, $cantMaxPasajerosN, $responsableV, $tieneVueltaV,$importeV, $numeroVueloV, $asientoCategoriaV,$nombreAerolineaV,$cantidadEscalasV)
     {//$numeroVueloV, $asientoCategoriaV,$nombreAerolineaV,$cantidadEscalasV
         $this->numeroVuelo=$numeroVueloV;
         $this->asientoCategoria=$asientoCategoriaV;
         $this->nombreAerolinea=$nombreAerolineaV;
         $this->cantidadEscalas=$cantidadEscalasV;
 
-        parent::__construct($codigoN,$destinoN,$cantMaxPasajerosN,$responsableV,$tieneVueltaV);
+        parent::__construct($codigoN,$destinoN,$cantMaxPasajerosN,$responsableV,$tieneVueltaV,$importeV);
     }
 
     public function getNumeroVuelo(){

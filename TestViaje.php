@@ -7,11 +7,14 @@ include_once("ResponsableV.php");
 //todo esto es para inicializar una de ejemplo
 
 $responsable1= new ResponsableV(null, null, null, null);
-$viaje1=new Viaje(null,null,null,null, $responsable1);
+$viaje1=new Viaje(null,null,null,null, $responsable1,null);
 
 $responsable1= new ResponsableV(15438, 548819731, "carlos", "villagran");
+$tieneVuelta=true;
+$importe= 15000;
 
-$viaje1= new Viaje(275, "BRAZIL", 3, $responsable1);
+
+$viaje1= new Viaje(275, "BRAZIL", 3, $responsable1, $tieneVuelta, $importe);
 
 $pasajero1= new Persona("MARCOS", "AURELIO", 8649831, 158849231);
 $pasajero2= new Persona("TOMAS", "ROJAS", 42165680, 15498246);
@@ -283,8 +286,10 @@ do {
                     $apellidoN= strtoupper(trim(fgets(STDIN)));
                     echo "\nIngrese documento del nuevo pasajero: ";
                     $documentoN= strtoupper(trim(fgets(STDIN)));
+                    echo "\nIngrese Telefono del nuevo Pasajero";
+                    $telefonoN= trim(fgets(STDIN));
                     //pusheo al array
-                    $viaje1->agregarPasajero($nombreN, $apellidoN, $documentoN);
+                    $viaje1->agregarPasajero($nombreN, $apellidoN, $documentoN, $telefonoN);
                     }
                     
                 }
