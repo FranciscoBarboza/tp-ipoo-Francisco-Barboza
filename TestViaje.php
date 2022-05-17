@@ -180,7 +180,7 @@ do {
         
                 //seteo lo nuevo
                 $viaje1->setNumeroVuelo($numVuelo);
-                $viaje1->
+                
             }
 
 
