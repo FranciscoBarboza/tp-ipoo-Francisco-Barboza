@@ -27,11 +27,29 @@ class Terrestre extends Viaje{
 
     //Si el viaje es "Terrestre" y el asiento es CAMA, se incrementa el importe un 25%
     public function venderPasaje($pasajero){
-        $ImporteAux= $this->getImporte();
+        $ImporteAux= parent::getImporte();
         $tipoAsiento= $this->getComodidad();
-        if ($tipoAsiento == "CAMA") {
+        $tieneVueltaAux= parent::getTieneVuelta();
+
+
+        if (parent::hayPasajesDisponible()) {
+
+            parent::venderPasaje($pasajero);
+            $totalImporte= $ImporteAux;
+
+            if ($tipoAsiento == "CAMA") {//si es cama sumo un 25%
+                $recargo= ($ImporteAux*25)/100;
+                $totalImporte= $ImporteAux + $recargo;
+            }
             
+            if ($tieneVueltaAux) {//si el viaje es ida y vuelta se incrementa un +50%
+                $recargo= ($ImporteAux*50)/100;
+                $totalImporte= $totalImporte + $recargo;
+            }
+
+            return $totalImporte;
         }
+        
     }
 
 
