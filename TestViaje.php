@@ -2,6 +2,8 @@
 include_once("Viaje.php");
 include_once("Persona.php");
 include_once("ResponsableV.php");
+include("./Aereo.php");
+include("./Terrestre.php");
 
 
 //todo esto es para inicializar una de ejemplo
@@ -22,6 +24,14 @@ $pasajero3= new Persona("BRAULIO", "GARCIA", 16486297, 158849231);
 $ListaDePasajeros1=array($pasajero1, $pasajero2, $pasajero3);
 
 $viaje1->setPasajerosViaje($ListaDePasajeros1);
+
+
+
+
+
+$viaje2=new Aereo(275, "BRAZIL", 3, $responsable1, $tieneVuelta, 5000, 2, "PRIMERA CLASE", "AEROLINEAS ARGENTINAS", 2);
+
+$viaje3= new terrestre(275, "ARGENTINA", 2, $responsable1, false, $importe, "CAMA");
 
 //hasta aca
 
