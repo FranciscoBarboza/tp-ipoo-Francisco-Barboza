@@ -8,7 +8,7 @@ class Aereo extends Viaje{
     private $nombreAerolinea;
     private $cantidadEscalas;
     /**
-     * $asientoCategoria tiene que ser "PRIMERA CLASE" O "SEGUNDA CLASE"
+     * $asientoCategoria tiene que ser "PRIMERA CLASE" O "SEGUNDA CLASE" SEMICAMA
      * @param string $asiento categoria
      */
     public function __construct($codigoN, $destinoN, $cantMaxPasajerosN, $responsableV, $tieneVueltaV,$importeV, $numeroVueloV, $asientoCategoriaV,$nombreAerolineaV,$cantidadEscalasV)

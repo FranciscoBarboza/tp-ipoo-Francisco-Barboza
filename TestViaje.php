@@ -2,8 +2,8 @@
 include_once("Viaje.php");
 include_once("Persona.php");
 include_once("ResponsableV.php");
-include("./Aereo.php");
 include("./Terrestre.php");
+include("./Aereo.php");
 
 
 //todo esto es para inicializar una de ejemplo
@@ -139,7 +139,7 @@ do {
             $viaje1->setDestino($destinoN);
             $viaje1->setCantMaxPasajeros($cantMaxPasajerosN);
 
-            //16/5
+            //nuevos ser para tp numero 3
             echo "\ningrese importe del viaje: ";
             $importeNuevo=trim(fgets(STDIN));
 
@@ -159,10 +159,15 @@ do {
 
 
             if ($tipoDeViaje == 1) {
+                /*tipo de viaje 1 es el aereo
+                tiene $numVuelo
+                $asientoCategoria
+                $nombreAerolinea
+                $cantEscalas*/
                 echo "\nIngrese el número de vuelo: ";
                 $numVuelo = trim(fgets(STDIN));
                 do {
-                    echo "\nIngrese la categoría de Asientos:\nPrimera Clase = 1\nEstandar = 2\n";
+                    echo "\nIngrese la categoría de Asientos:\nPrimera Clase = 1\nSegunda clase = 2\n";
                     $catAsientos = trim(fgets(STDIN));
                     if ($catAsientos > 2 || $catAsientos < 1) {
                         echo "\nIngrese una opción correcta\n";
@@ -180,9 +185,31 @@ do {
         
                 //seteo lo nuevo
                 $viaje1->setNumeroVuelo($numVuelo);
-                
-            }
+                //seteo la categoria de asiento
+                $viaje1->setAsientoCategoria($catAsientos);
+                //seteo el nombre de la aerolinea
+                $viaje1->setNombreAerolinea($nomAero);
+                //seteo la cantidad de escalas
+                $viaje1->setCantidadEscalas($cantEscalas);
 
+            }
+            if ($tipoDeViaje == 2) {//si tipo de viaje es terrestre
+                
+                do{
+                    echo "\nIngrese el tipo de asiento:\nCama= 1\nSemicama= 2";
+                    $asientosViaje= trim(fgets(STDIN));
+                    if ($asientosViaje <> 2 && $asientosViaje <> 1) {
+                        echo "Ingrese una opcion correcta\n";
+                    }
+                } while ($asientosViaje <> 2 && $asientosViaje <> 1);
+                if ($asientosViaje == 1) {
+                    $asientosViaje = "CAMA";
+                }
+                if ($asientosViaje == 2){
+                    $asientosViaje = "SEMICAMA";
+                }
+                    
+            
 
 
 
@@ -257,8 +284,9 @@ do {
                             echo "ERROR: ah alcanzado el maximo de pasajeros";
                         } 
                         
-                    } while ((($cantMaxPasajerosN)>=$i)&& ($siNo=="SI"));
+                    } while ((($cantMaxPasajerosN)>=$i) && ($siNo=="SI"));
                 }
+            }
             break;
         case 2:
             //menu para 2) modificar datos

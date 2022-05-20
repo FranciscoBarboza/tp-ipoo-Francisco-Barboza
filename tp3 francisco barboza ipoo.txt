@@ -1,0 +1,7 @@
+nombre: francisco barboza
+legajo: fai-3595
+email: francisco.barboza@est.fi.uncoma.edu.ar
+
+repositorio: https://github.com/FranciscoBarboza/tp-ipoo-Francisco-Barboza
+
+este es mi trabajo esta subido al repositorio del tp1 solo que le cambie el nombre, gracias.
