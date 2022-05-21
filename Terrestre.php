@@ -1,6 +1,6 @@
 <?php
 
-include("./Viaje.php");
+
 
 class Terrestre extends Viaje{
     private $comodidad;

@@ -1,4 +1,5 @@
 <?php
+
 include_once("Viaje.php");
 include_once("Persona.php");
 include_once("ResponsableV.php");
@@ -9,7 +10,7 @@ include("./Aereo.php");
 //todo esto es para inicializar una de ejemplo
 
 $responsable1= new ResponsableV(null, null, null, null);
-$viaje1=new Viaje(null,null,null,null, $responsable1,null);
+
 
 $responsable1= new ResponsableV(15438, 548819731, "carlos", "villagran");
 $tieneVuelta=true;
@@ -17,6 +18,7 @@ $importe= 15000;
 
 
 $viaje1= new Viaje(275, "BRAZIL", 3, $responsable1, $tieneVuelta, $importe);
+
 
 $pasajero1= new Persona("MARCOS", "AURELIO", 8649831, 158849231);
 $pasajero2= new Persona("TOMAS", "ROJAS", 42165680, 15498246);
@@ -29,11 +31,18 @@ $viaje1->setPasajerosViaje($ListaDePasajeros1);
 
 
 
+
 $viaje2=new Aereo(275, "BRAZIL", 3, $responsable1, $tieneVuelta, 5000, 2, "PRIMERA CLASE", "AEROLINEAS ARGENTINAS", 2);
+$viaje2->setPasajerosViaje($ListaDePasajeros1);
 
-$viaje3= new terrestre(275, "ARGENTINA", 2, $responsable1, false, $importe, "CAMA");
 
-$viajes=[$viajeA, $viaje2, $viaje3];
+$viaje3= new Terrestre(275, "ARGENTINA", 2, $responsable1, false, $importe, "CAMA");
+$viaje3->setPasajerosViaje($ListaDePasajeros1);
+
+$viaje1= $viaje2; //aca asigne el viaje que tenga por defecto 
+
+
+$viajes=[$viaje2, $viaje3];
 //hasta aca
 
 
@@ -56,10 +65,10 @@ do {
             echo "\nindique tipo de viaje: 1)aereo 2)terrestre";
             $tipoDeViaje=trim(fgets(STDIN));
             if ($tipoDeViaje==1) {
-                $viaje1=$viajes[1];
+                $viaje1=$viajes[0];
             }
             if ($tipoDeviaje==2) {
-                $viaje1=$viajes[2];
+                $viaje1=$viajes[1];
             }
             //menu para la opcion 1) cargar informacion de un viaje
             //validacion para no dejar vacio el codigo de 
@@ -209,83 +218,7 @@ do {
                     $asientosViaje = "SEMICAMA";
                 }
                     
-            
-
-
-
-
-            echo "\nQuiere ingresar un pasajero?(si/no): ";
-            //usa strtoupper para evitar errores por las minusculas
-            do {
-                $siNo=strtoupper(trim(fgets(STDIN)));
-                if (($siNo <> "SI") && ($siNo <> "NO")) {
-                    echo "\nERROR: ingrese una opcion valida(si/no): ";
-                }
-            } while (($siNo <> "SI") && ($siNo <> "NO"));
-                if ($siNo=="SI") {
-                    // un do while pasa poner tantos pasajeros como quiera
-                    $i=1;
-                    do {
-                        //uso strouper para pasar el nombre y apellido a mayusculas
-                        echo "\nNombre: ";
-                        $nombreN=strtoupper(trim(fgets(STDIN)));
-                        echo "\nApellido: ";
-                        $apellidoN=strtoupper(trim(fgets(STDIN)));
-                        
-
-                        //validacion para ingresar un numero en documento
-                        $cantidadPasajeros= count($viaje1->getPasajerosViaje());
-                        do {
-                            echo "\nDocumento: ";
-                            $documentoN=trim(fgets(STDIN));
-
-                            if (!(is_numeric($documentoN))) {
-                                echo "ERROR: ingrese un numero de documento\n";
-
-                            }
-                            $encontrado= $viaje1->hayPasajeroRepetido($documentoN);
-                            
-                            if ($encontrado) {
-                                echo "ERROR: este pasajero ya existe";
-                            }
-                            
-                        } while (!(is_numeric($documentoN)) || ($encontrado));
-
-                        echo "\nTelefono: ";
-                        //validacion para ingresar un numero en telefono
-                        do {
-                            $telefonoN=trim(fgets(STDIN));
-                            if (!(is_numeric($telefonoN))) {
-                                echo "ERROR: ingrese un numero de telefono\n";
-                            }
-
-                        } while (!(is_numeric($telefonoN)));
-                        
-                        //inicializo la clase persona nueva
-                        $Persona= new Persona($nombreN, $apellidoN, $documentoN,$telefonoN);
-
-                        $auxListaPasajeros=$viaje1->getPasajerosViaje();
-                        
-                        array_push($auxListaPasajeros, $Persona);
-
-                        $viaje1->setPasajerosViaje($auxListaPasajeros);
-                
-                        echo "\nPasajeros: ". count($viaje1->getPasajerosViaje()). " de ". $viaje1->getCantMaxPasajeros(). " disponibles\n";
-                        echo "Quiere ingresar otro pasajero?(si/no): ";
-                        do {
-                            $siNo=strtoupper(trim(fgets(STDIN)));
-                            if (($siNo <> "SI") && ($siNo <> "NO")) {
-                                echo "\nIngrese una opcion valida(si/no): ";
-                            }
-                        } while (($siNo <> "SI") && ($siNo <> "NO"));
-                        //validacion en caso de ingresar mas pasajeros de los posibles
-                        $i=$i+1;
-                        if (($cantMaxPasajerosN)< $i) {
-                            echo "ERROR: ah alcanzado el maximo de pasajeros";
-                        } 
-                        
-                    } while ((($cantMaxPasajerosN)>=$i) && ($siNo=="SI"));
-                }
+        
             }
             break;
         case 2:
@@ -571,7 +504,22 @@ do {
                 }
                 else {
                     echo "\nPasajeros actuales: ". count($viaje1->getPasajerosViaje());
+                };
+
+                //tp  n3
+                if (is_a($viaje1, "Aereo")) {
+                    
+                    echo "\nNumero vuelo: ". $viaje1->getNumeroVuelo().
+                    "\nCategoria asiento: ". $viaje1->getAsientoCategoria().
+                    "\nNombre de la Aerolinea: ". $viaje1->getNombreAerolinea().
+                    "\nCantidad de escalas: ". $viaje1->getCantidadEscalas();
                 }
+                
+                if (is_a($viaje1, "Terrestre")) {
+                    
+                    echo "\nComodidad: ". $viaje1->getComodidad();
+                }
+                
             }
             elseif ($respuesta==4) {
                 echo "\n=======================================\n".

@@ -11,7 +11,7 @@ class Viaje{
     private $cantMaxPasajeros;
     private $pasajerosViaje;
     private $responsableV;
-    private bool $tieneVuelta;
+    private $tieneVuelta;
     private int $importe;
 
     /**
@@ -217,40 +217,13 @@ class Viaje{
         }
     }
 
-    /* do                        
-
-                        //validacion para ingresar un numero en documento
-                        $cantidadPasajeros= count($viaje1->getPasajerosViaje());
-                        do {
-                            echo "\nDocumento: ";
-                            $documentoN=trim(fgets(STDIN));
-                            if (!(is_numeric($documentoN))) {
-                                echo "ERROR: ingrese un numero de documento\n";
-                            }
-                            //busco que no haya ingresado el documento repetido
-                            $encontrado=false;
-                            $i=0;
-
-                            while (!($encontrado) || ($i < (count($viaje1->getPasajerosViaje())))) {
-                                
-                                if ($viaje1->getPasajerosViaje()[$i]) {
-                                    $encontrado= true;
-                                    echo "ERROR: este pasajero ya existe\n";
-                                }
-                                $i=$i+1;
-                            }
-                        } while (!(is_numeric($documentoN)) || ($encontrado== true)); */
+   
 
 
 
 }
 
-function linea(){
-    //una linea y salto de linea
+
+function linea(){ 
     echo "=======================================\n";
-
-
-    
-
-    
 }
